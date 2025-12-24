@@ -1,38 +1,38 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import {
+  contactMessages,
+  jobApplications,
+  testimonials,
+  type InsertContactMessage,
+  type InsertJobApplication,
+  type InsertTestimonial,
+  type Testimonial
+} from "@shared/schema";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createContactMessage(message: InsertContactMessage): Promise<void>;
+  createJobApplication(application: InsertJobApplication): Promise<void>;
+  getTestimonials(): Promise<Testimonial[]>;
+  createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async createContactMessage(message: InsertContactMessage): Promise<void> {
+    await db.insert(contactMessages).values(message);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async createJobApplication(application: InsertJobApplication): Promise<void> {
+    await db.insert(jobApplications).values(application);
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials);
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial> {
+    const [created] = await db.insert(testimonials).values(testimonial).returning();
+    return created;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
