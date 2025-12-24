@@ -1,46 +1,154 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600&family=Outfit:wght@500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* LIGHT MODE */
 :root {
-  /* Warm, welcoming palette */
-  /* Primary Blue: Trust, Stability (HSL 215, 65%, 45%) */
-  --primary: 215 65% 45%;
-  --primary-foreground: 0 0% 100%;
+  --button-outline: rgba(0,0,0, .10);
+  --badge-outline: rgba(0,0,0, .05);
 
-  /* Calming Green: Growth, Nature (HSL 150, 40%, 45%) */
-  --secondary: 150 40% 45%;
-  --secondary-foreground: 0 0% 100%;
+  /* Automatic computation of border around primary / danger buttons */
+  --opaque-button-border-intensity: -8; /* In terms of percentages */
 
-  /* Soft Backgrounds */
-  --background: 210 20% 98%; /* Very light blue-grey */
-  --foreground: 215 25% 27%; /* Dark slate text for readability */
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
+
+  --background: 210 20% 98%; /* Very light blue-gray */
+  --foreground: 222 47% 11%;
+
+  --border: 214 32% 91%;
 
   --card: 0 0% 100%;
-  --card-foreground: 215 25% 27%;
+  --card-foreground: 222 47% 11%;
+  --card-border: 214 32% 91%;
+
+  --sidebar: 210 40% 96%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-border: 214 32% 91%;
+  --sidebar-primary: 221.2 83.2% 53.3%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 210 40% 96.1%;
+  --sidebar-accent-foreground: 222.2 47.4% 11.2%;
+  --sidebar-ring: 215 20.2% 65.1%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 215 25% 27%;
+  --popover-foreground: 222 47% 11%;
+  --popover-border: 214 32% 91%;
 
-  --muted: 210 20% 96%;
-  --muted-foreground: 215 15% 50%;
+  --primary: 221.2 83.2% 53.3%; /* Vibrant Blue */
+  --primary-foreground: 210 40% 98%;
 
-  --accent: 35 80% 92%; /* Soft warm accent (cream/yellow) */
-  --accent-foreground: 215 65% 45%;
+  --secondary: 142 70% 45%; /* Vibrant Green */
+  --secondary-foreground: 210 40% 98%;
 
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
 
-  --border: 214 20% 90%;
-  --input: 214 20% 90%;
-  --ring: 215 65% 45%;
+  --accent: 199 89% 48%; /* Vibrant Sky Blue */
+  --accent-foreground: 222.2 47.4% 11.2%;
 
-  --radius: 0.75rem;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
 
-  --font-display: 'Outfit', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --input: 214 32% 91%;
+  --ring: 221.2 83.2% 53.3%;
+  --chart-1: 221.2 83.2% 53.3%;
+  --chart-2: 142 70% 45%;
+  --chart-3: 199 89% 48%;
+  --chart-4: 47 95% 50%;
+  --chart-5: 27 95% 55%;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --radius: .5rem; /* 8px */
+  --shadow-2xs: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05);
+  --shadow-xs: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05);
+  --shadow-sm: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 1px 2px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 1px 2px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-md: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 2px 4px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-lg: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 4px 6px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-xl: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 8px 10px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-2xl: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+}
+
+.dark {
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+
+  --card: 222 47% 11%;
+  --card-foreground: 210 40% 98%;
+  --card-border: 217.2 32.6% 17.5%;
+
+  --sidebar: 222 47% 11%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-primary: 217.2 91.2% 59.8%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 240 4.8% 95.9%;
+  --sidebar-ring: 240 4.9% 83.9%;
+
+  --popover: 222 47% 11%;
+  --popover-foreground: 210 40% 98%;
+  --popover-border: 217.2 32.6% 17.5%;
+
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 142 70% 45%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 199 89% 48%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+
+  --shadow-2xs: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05);
+  --shadow-xs: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05);
+  --shadow-sm: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 1px 2px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 1px 2px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-md: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 2px 4px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-lg: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 4px 6px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-xl: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05), 0px 8px 10px -1px hsl(221.2 83.2% 53.3% / 0.1);
+  --shadow-2xl: 0px 2px 0px 0px hsl(221.2 83.2% 53.3% / 0.05);
 }
 
 @layer base {
@@ -48,28 +156,48 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased font-body;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    @apply font-sans antialiased bg-background text-foreground;
   }
 }
 
-/* Custom Utilities for Polish */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  input[type="search"]::-webkit-search-cancel-button {
+    @apply hidden;
   }
-  
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
   }
-  
-  .section-padding {
-    @apply py-16 md:py-24;
+  .toggle-elevate::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: -1;
   }
-  
-  .container-padding {
-    @apply px-4 sm:px-6 lg:px-8;
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+  .hover-elevate::after, .active-elevate-2::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    z-index: 999;
+  }
+  .hover-elevate:hover::after {
+    background-color: var(--elevate-1);
+  }
+  .active-elevate-2:active::after {
+    background-color: var(--elevate-2);
+  }
+  .border.hover-elevate::after, .border.active-elevate-2::after {
+    inset: -1px;
   }
 }
