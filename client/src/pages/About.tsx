@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import caregiverImage from "@assets/stock_images/caregiver_helping_sm_e40195a6.jpg";
-import communityImage from "@assets/stock_images/diverse_group_of_adu_d59229a3.jpg";
+import caregiverImage from "@assets/stock_images/nurse_elderly_1_3.jpg";
+import communityImage from "@assets/stock_images/nurse_disabled_1_2.jpg";
 
 const values = [
   {

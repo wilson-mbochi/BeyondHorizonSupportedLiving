@@ -5,8 +5,8 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import caregiverImage from "@assets/stock_images/caregiver_helping_sm_e40195a6.jpg";
-import communityImage from "@assets/stock_images/diverse_group_of_adu_d59229a3.jpg";
+import caregiverImage from "@assets/stock_images/home_care_1_2.jpg";
+import communityImage from "@assets/stock_images/nurse_elderly_1_2.jpg";
 
 const services = [
   { icon: Heart, title: "Dedicated Personal Care", description: "Compassionate assistance with daily living activities tailored to individual needs." },
