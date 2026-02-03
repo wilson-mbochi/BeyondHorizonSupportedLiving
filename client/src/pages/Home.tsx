@@ -6,10 +6,10 @@ import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useRef } from "react";
-import heroImage from "@assets/stock_images/nurse_elderly_1_1.jpg";
-import communityImage from "@assets/stock_images/nurse_elderly_1_2.jpg";
-import caregiverImage from "@assets/stock_images/nurse_disabled_1_1.jpg";
-import supportiveImage from "@assets/stock_images/home_care_1_1.jpg";
+import heroImage from "@assets/stock_images/black_wheelchair_1.jpg";
+import communityImage from "@assets/stock_images/black_nurse_1_1.jpg";
+import caregiverImage from "@assets/stock_images/black_care_1_1.jpg";
+import supportiveImage from "@assets/stock_images/black_support_1_1.jpg";
 
 const pillars = [
   {
