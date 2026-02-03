@@ -1,115 +1,195 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Heart, Users, Home as HomeIcon, Star } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Heart, Phone, Mail, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import heroImage from '@assets/stock_images/supportive_care_envi_147ab1ca.jpg';
-import communityImage from '@assets/stock_images/diverse_group_of_adu_d59229a3.jpg';
+import heroImage from "@assets/stock_images/diverse_group_of_adu_d59229a3.jpg";
+import caregiverImage from "@assets/stock_images/caregiver_helping_sm_e40195a6.jpg";
+
+const pillars = [
+  {
+    icon: TrendingUp,
+    title: "Growth",
+    description: "Personal, social, educational, and professional development that empowers individuals to live fulfilling lives.",
+    color: "bg-emerald-500",
+  },
+  {
+    icon: Users,
+    title: "Support",
+    description: "Providing inclusive tools, services, and environments that empower full participation, independence, and dignity.",
+    color: "bg-sky-500",
+  },
+  {
+    icon: Heart,
+    title: "Inclusion",
+    description: "It's about removing barriers, both physical and attitudinal, and recognizing the value of diverse abilities.",
+    color: "bg-rose-500",
+  },
+];
+
+const services = [
+  "Dedicated Personal Care",
+  "Care staff including RNs 24/7",
+  "Vocational Development",
+  "Habilitation Support",
+  "Medication Management",
+  "Community Service Activities",
+  "Transportation & Errands",
+  "Light Housekeeping & Meal Prep",
+  "Wellness Guidance & Counseling",
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background font-body">
+    <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={heroImage} 
-            alt="Warm supportive living environment" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/30" />
-        </div>
-
-        <div className="container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                </span>
-                <span>Compassionate care for everyone</span>
-              </div>
-              
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-foreground mb-6 leading-[1.1]">
-                Your Life, <br />
-                Your Choice, <br />
-                <span className="text-primary">Your Support.</span>
-              </h1>
-              
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-lg">
-                We provide tailored supported living services that empower adults with varying care needs to live independently and with dignity.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact">
-                  <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all">
-                    Get Started
-                  </Button>
-                </Link>
-                <Link href="/services">
-                  <Button variant="outline" size="lg" className="text-lg px-8 py-6 rounded-full bg-white/50 border-2 hover:bg-white hover:border-primary/50 transition-all">
-                    Explore Services
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
+      {/* Hero Section with Pillars */}
+      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {pillars.map((pillar, idx) => (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+              >
+                <Card className="p-8 h-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white overflow-hidden relative group">
+                  <div className={`absolute top-0 left-0 w-full h-1.5 ${pillar.color}`} />
+                  <div className={`w-16 h-16 ${pillar.color} rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg`}>
+                    <pillar.icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4 text-foreground">{pillar.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{pillar.description}</p>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-24 bg-white">
+      {/* Maya Angelou Quote Section */}
+      <section className="py-16 bg-primary text-white">
+        <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Quote className="w-12 h-12 mx-auto mb-6 opacity-50" />
+          <blockquote className="text-2xl md:text-3xl font-medium italic leading-relaxed mb-6">
+            "People will forget what you said, people will forget what you did, but people will never forget how you made them feel."
+          </blockquote>
+          <cite className="text-lg opacity-80 not-italic">~ Maya Angelou</cite>
+        </div>
+      </section>
+
+      {/* Contact CTA Banner */}
+      <section className="py-8 bg-secondary">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-accent/30 rounded-3xl transform -rotate-3 z-0" />
-              <img 
-                src={communityImage} 
-                alt="Community gathering" 
-                className="relative z-10 rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]"
-              />
-              <div className="absolute bottom-8 right-8 z-20 bg-white p-6 rounded-xl shadow-xl max-w-xs hidden md:block">
-                <div className="flex items-center space-x-2 text-primary font-bold mb-2">
-                  <Heart className="w-5 h-5 fill-current" />
-                  <span>Our Promise</span>
-                </div>
-                <p className="text-sm text-muted-foreground">"To create a world where everyone belongs and thrives."</p>
+          <Link href="/contact">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-white hover:opacity-90 transition-opacity cursor-pointer" data-testid="link-contact-cta">
+              <span className="text-xl font-bold">Reach Us Today!</span>
+              <div className="flex items-center gap-2">
+                <Phone className="w-5 h-5" />
+                <span className="font-semibold">(206) 724-9435</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-5 h-5" />
+                <span className="font-semibold">info@BeyondHorizonSupportedLiving.org</span>
               </div>
             </div>
-            
-            <div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
-                Empowering Independence Through Community
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                At Beyond Horizon, we believe that support isn't just about meeting needs—it's about enabling dreams. Our approach is centered on the individual, fostering environments where people feel safe, valued, and connected.
+          </Link>
+        </div>
+      </section>
+
+      {/* Welcome Section */}
+      <section className="py-20 bg-white">
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+            >
+              Welcome to{" "}
+              <span className="text-primary italic">Beyond Horizon</span>{" "}
+              <span className="text-secondary italic">Supported Living</span>
+            </motion.h1>
+            <p className="text-xl text-muted-foreground">Experience the best in Living Assistance Services!</p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Vision */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">Vision</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Our staff has a simple vision for how we give service to others. It is encompassed by the simple values of <strong className="text-foreground">support</strong>, <strong className="text-foreground">inclusion</strong> and <strong className="text-foreground">growth</strong> for everyone in our community.
               </p>
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Personalized care plans for every individual",
-                  "Focus on skill-building and independence",
-                  "Strong community integration and social activities",
-                  "24/7 compassionate support staff"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center space-x-3 text-foreground font-medium">
-                    <div className="w-6 h-6 rounded-full bg-secondary/20 text-secondary flex items-center justify-center">
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
-                    <span>{item}</span>
+              <p className="text-muted-foreground leading-relaxed">
+                We are glad to offer integrated living services that are dedicated to empowering individuals with disabilities to lead fulfilling, independent lives within their chosen communities.
+              </p>
+            </div>
+
+            {/* Mission */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">Mission</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Our mission is to <strong className="text-foreground">deliver expertise and compassion in every interaction</strong>. Through compassionate, person-centered care, we support meaningful relationships, valued activities, and the dignity of living at home.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                The experienced caregivers foster environments where clients thrive, maintaining independence and well-being. Guided by the belief that service to others enriches life, we champion inclusion, choice, and lifelong support.
+              </p>
+            </div>
+
+            {/* Services */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">Services</h2>
+              <ul className="space-y-2">
+                {services.map((service, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-muted-foreground">
+                    <span className="font-bold text-primary">{idx + 1}.</span>
+                    <span>{service}</span>
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder's Message */}
+      <section className="py-20 bg-slate-50">
+        <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="absolute -inset-4 bg-primary/10 rounded-3xl transform -rotate-2 z-0" />
+              <img
+                src={caregiverImage}
+                alt="Compassionate care"
+                className="relative z-10 rounded-2xl shadow-2xl w-full object-cover aspect-[4/3]"
+              />
+            </div>
+
+            <div className="bg-white p-8 lg:p-10 rounded-2xl shadow-xl border-l-4 border-primary">
+              <h2 className="text-2xl font-bold text-primary mb-6">FOUNDER'S MESSAGE</h2>
+              <blockquote className="text-muted-foreground leading-relaxed space-y-4">
+                <p>
+                  "As a Registered Nurse, Nurse Educator, and a parent of individuals supported by DDA, I understand the importance of care that is both clinically sound and deeply compassionate.
+                </p>
+                <p>
+                  Beyond Horizon Living Services was created to deliver the kind of care I would want for my own family—care that is safe, respectful, individualized, and empowering.
+                </p>
+                <p>
+                  Our mission is to support people not only to live safely, but to thrive with dignity and purpose."
+                </p>
+              </blockquote>
+              <div className="mt-6 pt-6 border-t border-slate-200">
+                <p className="font-bold text-foreground">— Mary, RN, MSN, BCBA Candidate</p>
+                <p className="text-sm text-muted-foreground">Founder, Beyond Horizon Living Services</p>
+              </div>
               <Link href="/about">
-                <Button variant="ghost" className="text-primary hover:text-primary/80 hover:bg-primary/5 pl-0 font-semibold text-lg group">
-                  Learn more about us <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <Button className="mt-6 rounded-full px-6" data-testid="button-read-story">
+                  Read Our Story! <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
             </div>
@@ -117,66 +197,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-24 bg-slate-50">
-        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">Why Choose Beyond Horizon?</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">We go beyond basic care to provide a holistic living experience that nurtures growth and happiness.</p>
-        </div>
-
+      {/* Community Image Section */}
+      <section className="py-20 bg-white">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: HomeIcon,
-                title: "Homely Environments",
-                desc: "Comfortable, modern living spaces that truly feel like home, adapted to individual needs."
-              },
-              {
-                icon: Users,
-                title: "Community Focused",
-                desc: "Building meaningful connections through shared activities and local community engagement."
-              },
-              {
-                icon: Star,
-                title: "Quality of Care",
-                desc: "Highly trained, compassionate staff dedicated to maintaining the highest standards of support."
-              }
-            ].map((feature, idx) => (
-              <motion.div 
-                key={idx}
-                whileHover={{ y: -5 }}
-                className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 transition-all hover:shadow-xl hover:border-primary/20"
-              >
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6">
-                  <feature.icon className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-display font-bold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Building Community Together</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              At Beyond Horizon, we believe in the power of connection and belonging. Our community is built on trust, respect, and shared growth.
+            </p>
+          </div>
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src={heroImage}
+              alt="Community gathering"
+              className="w-full h-80 md:h-96 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+              <div className="text-white">
+                <h3 className="text-2xl font-bold mb-2">Join Our Family</h3>
+                <p className="opacity-90">Where every individual is valued and supported.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-        
-        <div className="container max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Ready to find the right support?</h2>
-          <p className="text-primary-foreground/80 text-lg mb-10 max-w-2xl mx-auto">
-            Whether you're looking for yourself or a loved one, we're here to answer your questions and guide you through the process.
+      <section className="py-16 bg-primary text-white">
+        <div className="container max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Compassionate Care?</h2>
+          <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
+            Contact us today to learn how we can support you or your loved one on the journey to independence.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/contact">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-full shadow-lg">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-full shadow-lg" data-testid="button-contact-cta">
                 Contact Us Today
               </Button>
             </Link>
             <Link href="/services">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white font-bold text-lg px-8 py-6 rounded-full">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white font-bold text-lg px-8 py-6 rounded-full" data-testid="button-services-cta">
                 View All Services
               </Button>
             </Link>
