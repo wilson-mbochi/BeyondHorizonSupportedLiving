@@ -6,17 +6,17 @@ import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useRef, useState, useEffect } from "react";
-import heroSlide1 from "@assets/stock_images/hero_slide_1.jpg";
-import heroSlide2 from "@assets/stock_images/hero_slide_2.jpg";
-import heroSlide3 from "@assets/stock_images/hero_slide_3.jpg";
-import communityImage from "@assets/stock_images/black_nurse_1_1.jpg";
-import caregiverImage from "@assets/stock_images/black_care_1_1.jpg";
-import supportiveImage from "@assets/stock_images/black_support_1_1.jpg";
+import heroSlide1 from "@assets/stock_images/black_hero_1.jpg";
+import heroSlide2 from "@assets/stock_images/black_hero_2.jpg";
+import heroSlide3 from "@assets/stock_images/black_hero_3.jpg";
+import communityImage from "@assets/stock_images/black_community_1.jpg";
+import caregiverImage from "@assets/stock_images/black_community_2.jpg";
+import supportiveImage from "@assets/stock_images/black_community_3.jpg";
 
 const heroSlides = [
-  { image: heroSlide1, alt: "Nurse engaging warmly with elderly person" },
-  { image: heroSlide2, alt: "Elderly people enjoying group activities together" },
-  { image: heroSlide3, alt: "Caregiver helping with engaging art therapy" },
+  { image: heroSlide1, alt: "Black nurse caring for elderly woman with warm conversation" },
+  { image: heroSlide2, alt: "Black seniors enjoying games and activities together" },
+  { image: heroSlide3, alt: "African American caregiver helping with art therapy" },
 ];
 
 const pillars = [

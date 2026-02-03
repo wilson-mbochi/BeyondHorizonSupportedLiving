@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import caregiverImage from "@assets/stock_images/black_nurse_1_2.jpg";
-import communityImage from "@assets/stock_images/black_care_1_2.jpg";
+import caregiverImage from "@assets/stock_images/black_about_1.jpg";
+import communityImage from "@assets/stock_images/black_about_2.jpg";
 
 const values = [
   {
