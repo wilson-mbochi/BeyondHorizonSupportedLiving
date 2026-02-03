@@ -1,15 +1,23 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, TrendingUp, Users, Heart, Phone, Mail, Quote, ChevronDown } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Heart, Phone, Mail, Quote, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { useRef } from "react";
-import heroImage from "@assets/stock_images/black_wheelchair_1.jpg";
+import { useRef, useState, useEffect } from "react";
+import heroSlide1 from "@assets/stock_images/hero_slide_1.jpg";
+import heroSlide2 from "@assets/stock_images/hero_slide_2.jpg";
+import heroSlide3 from "@assets/stock_images/hero_slide_3.jpg";
 import communityImage from "@assets/stock_images/black_nurse_1_1.jpg";
 import caregiverImage from "@assets/stock_images/black_care_1_1.jpg";
 import supportiveImage from "@assets/stock_images/black_support_1_1.jpg";
+
+const heroSlides = [
+  { image: heroSlide1, alt: "Nurse engaging warmly with elderly person" },
+  { image: heroSlide2, alt: "Elderly people enjoying group activities together" },
+  { image: heroSlide3, alt: "Caregiver helping with engaging art therapy" },
+];
 
 const pillars = [
   {
@@ -63,6 +71,8 @@ const staggerContainer = {
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -71,23 +81,71 @@ export default function Home() {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
 
-      {/* Full-Screen Hero Section */}
+      {/* Full-Screen Hero Slider Section */}
       <section ref={heroRef} className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        <motion.div 
-          className="absolute inset-0 z-0"
-          style={{ scale: heroScale }}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentSlide}
+            className="absolute inset-0 z-0"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            style={{ scale: heroScale }}
+          >
+            <img 
+              src={heroSlides[currentSlide].image} 
+              alt={heroSlides[currentSlide].alt} 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Slider Navigation Arrows */}
+        <button 
+          onClick={prevSlide}
+          className="absolute left-4 md:left-8 z-20 p-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 transition-all"
+          data-testid="button-hero-prev"
+          aria-label="Previous slide"
         >
-          <img 
-            src={heroImage} 
-            alt="Caring community" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
-        </motion.div>
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button 
+          onClick={nextSlide}
+          className="absolute right-4 md:right-8 z-20 p-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 transition-all"
+          data-testid="button-hero-next"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {heroSlides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/70'}`}
+              data-testid={`button-hero-indicator-${idx}`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
 
         <motion.div 
           className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto"
