@@ -3,23 +3,21 @@ import fs from "fs";
 import path from "path";
 
 export function serveStatic(app: Express) {
-  // Use the project root `public` directory so this works both
-  // in local/Node environments and on platforms like Vercel
-  // where `public/**` is the canonical static assets location.
-  const publicPath = path.resolve(process.cwd(), "public");
+  // Serve the built client from `dist/public`, which is where Vite writes
+  // its production bundle (see `vite.config.ts`).
+  const distPublicPath = path.resolve(process.cwd(), "dist/public");
 
-  if (!fs.existsSync(publicPath)) {
+  if (!fs.existsSync(distPublicPath)) {
     throw new Error(
-      `Could not find the build directory: ${publicPath}, make sure to build the client first`,
+      `Could not find the build directory: ${distPublicPath}, make sure to build the client first`,
     );
   }
 
-  // This may be ignored on some hosting providers (like Vercel),
-  // but it's still useful for local / traditional Node hosting.
-  app.use(express.static(publicPath));
+  // Serve all static assets (JS, CSS, images, etc.)
+  app.use(express.static(distPublicPath));
 
   // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(publicPath, "index.html"));
+    res.sendFile(path.resolve(distPublicPath, "index.html"));
   });
 }
