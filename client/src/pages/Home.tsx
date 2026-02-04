@@ -148,7 +148,7 @@ export default function Home() {
         </div>
 
         <motion.div 
-          className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto"
+          className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto pt-24 md:pt-0"
           style={{ opacity: heroOpacity }}
         >
           <motion.div
