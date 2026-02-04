@@ -1,9 +1,10 @@
 import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import { Menu, X, HeartHandshake } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoImage from "@assets/cropped-finallogo_1770186057561.png";
 
 const links = [
   { href: "/", label: "Home" },
@@ -36,16 +37,12 @@ export function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-105">
-              <HeartHandshake className="w-6 h-6" />
-            </div>
-            <div className="flex flex-col">
-              <span className={cn("font-display font-bold text-lg leading-tight", scrolled ? "text-primary" : "text-primary")}>
-                Beyond Horizon
-              </span>
-              <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">Supported Living</span>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <img 
+              src={logoImage} 
+              alt="Beyond Horizon Supported Living" 
+              className="h-12 md:h-14 w-auto transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Nav */}
