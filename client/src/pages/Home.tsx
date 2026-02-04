@@ -6,17 +6,17 @@ import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useRef, useState, useEffect } from "react";
-import heroSlide1 from "@assets/stock_images/black_hero_1.jpg";
-import heroSlide2 from "@assets/stock_images/black_hero_2.jpg";
-import heroSlide3 from "@assets/stock_images/black_hero_3.jpg";
+import heroSlide1 from "@assets/hands_1770185478022.png";
+import heroSlide2 from "@assets/holdinghands_1770185478022.jpg";
+import heroSlide3 from "@assets/lovehands_1770185478023.jpg";
 import communityImage from "@assets/stock_images/black_community_1.jpg";
 import caregiverImage from "@assets/stock_images/black_community_2.jpg";
 import supportiveImage from "@assets/stock_images/black_community_3.jpg";
 
 const heroSlides = [
-  { image: heroSlide1, alt: "Black nurse caring for elderly woman with warm conversation" },
-  { image: heroSlide2, alt: "Black seniors enjoying games and activities together" },
-  { image: heroSlide3, alt: "African American caregiver helping with art therapy" },
+  { image: heroSlide1, alt: "Diverse hands coming together in unity and support" },
+  { image: heroSlide2, alt: "Two hands holding together symbolizing care and connection" },
+  { image: heroSlide3, alt: "Hands forming a heart shape representing love and community" },
 ];
 
 const pillars = [
