@@ -9,8 +9,8 @@ import { useRef, useState, useEffect } from "react";
 import heroSlide1 from "@assets/hands_1770185478022.png";
 import heroSlide2 from "@assets/holdinghands_1770185478022.jpg";
 import heroSlide3 from "@assets/lovehands_1770185478023.jpg";
-import communityImage from "@assets/a-group-of-children-enjoy-a-sunny-day-in-the-park-walking-arm-_1770187765433.jpg";
-import caregiverImage from "@assets/pexels-photo-7551506-7551506-1_1770187765434.jpg";
+import communityImage from "@assets/stock_images/black_community_1.jpg";
+import caregiverImage from "@assets/nurse_1770187305720.jpg";
 import supportiveImage from "@assets/stock_images/black_community_3.jpg";
 
 const heroSlides = [
