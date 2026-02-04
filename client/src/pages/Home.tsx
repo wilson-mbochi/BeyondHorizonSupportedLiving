@@ -1,6 +1,20 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, TrendingUp, Users, Heart, Phone, Mail, Quote, ChevronDown } from "lucide-react";
+import {
+  ArrowRight,
+  TrendingUp,
+  Users,
+  Heart,
+  Phone,
+  Mail,
+  Quote,
+  ChevronDown,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
@@ -11,33 +25,46 @@ import heroSlide2 from "@assets/holdinghands_1770185478022.jpg";
 import heroSlide3 from "@assets/lovehands_1770185478023.jpg";
 import communityImage from "@assets/stock_images/black_community_1.jpg";
 import caregiverImage from "@assets/nurse_1770187305720.jpg";
-import supportiveImage from "@assets/stock_images/black_community_3.jpg";
+import supportiveImage from "@assets/stock_images/allCelebrate.jpg";
+import childrenimage from "@assets/stock_images/agroupofChildren.jpg";
 
 const heroSlides = [
-  { image: heroSlide1, alt: "Diverse hands coming together in unity and support" },
-  { image: heroSlide2, alt: "Two hands holding together symbolizing care and connection" },
-  { image: heroSlide3, alt: "Hands forming a heart shape representing love and community" },
+  {
+    image: heroSlide1,
+    alt: "Diverse hands coming together in unity and support",
+  },
+  {
+    image: heroSlide2,
+    alt: "Two hands holding together symbolizing care and connection",
+  },
+  {
+    image: heroSlide3,
+    alt: "Hands forming a heart shape representing love and community",
+  },
 ];
 
 const pillars = [
   {
     icon: TrendingUp,
     title: "Growth",
-    description: "Personal, social, educational, and professional development that empowers individuals to live fulfilling lives.",
+    description:
+      "Personal, social, educational, and professional development that empowers individuals to live fulfilling lives.",
     color: "bg-emerald-500",
     hoverColor: "group-hover:bg-emerald-600",
   },
   {
     icon: Users,
     title: "Support",
-    description: "Providing inclusive tools, services, and environments that empower full participation, independence, and dignity.",
+    description:
+      "Providing inclusive tools, services, and environments that empower full participation, independence, and dignity.",
     color: "bg-sky-500",
     hoverColor: "group-hover:bg-sky-600",
   },
   {
     icon: Heart,
     title: "Inclusion",
-    description: "It's about removing barriers, both physical and attitudinal, and recognizing the value of diverse abilities.",
+    description:
+      "It's about removing barriers, both physical and attitudinal, and recognizing the value of diverse abilities.",
     color: "bg-rose-500",
     hoverColor: "group-hover:bg-rose-600",
   },
@@ -58,26 +85,26 @@ const services = [
 const fadeInUp = {
   initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" }
+  transition: { duration: 0.6, ease: "easeOut" },
 };
 
 const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-  
+
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
@@ -88,15 +115,17 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navigation />
 
       {/* Full-Screen Hero Slider Section */}
-      <section ref={heroRef} className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section
+        ref={heroRef}
+        className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
+      >
         <AnimatePresence mode="wait">
-          <motion.div 
+          <motion.div
             key={currentSlide}
             className="absolute inset-0 z-0"
             initial={{ opacity: 0, scale: 1.1 }}
@@ -105,16 +134,16 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeInOut" }}
             style={{ scale: heroScale }}
           >
-            <img 
-              src={heroSlides[currentSlide].image} 
-              alt={heroSlides[currentSlide].alt} 
+            <img
+              src={heroSlides[currentSlide].image}
+              alt={heroSlides[currentSlide].alt}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
           </motion.div>
         </AnimatePresence>
 
-        <motion.div 
+        <motion.div
           className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto pt-24 md:pt-0"
           style={{ opacity: heroOpacity }}
         >
@@ -127,26 +156,28 @@ export default function Home() {
               Compassionate Care for Everyone
             </span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            Your Life, Your Choice,<br />
+            Your Life, Your Choice,
+            <br />
             <span className="text-primary">Your Support.</span>
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto"
           >
-            Empowering individuals with disabilities to lead fulfilling, independent lives within their chosen communities.
+            Empowering individuals with disabilities to lead fulfilling,
+            independent lives within their chosen communities.
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -154,19 +185,28 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/contact">
-              <Button size="lg" className="text-lg px-8 py-6 rounded-full shadow-2xl hover:scale-105 transition-transform" data-testid="button-hero-contact">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 rounded-full shadow-2xl hover:scale-105 transition-transform"
+                data-testid="button-hero-contact"
+              >
                 Get Started Today
               </Button>
             </Link>
             <Link href="/services">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-2 border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-foreground transition-all" data-testid="button-hero-services">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 rounded-full border-2 border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-foreground transition-all"
+                data-testid="button-hero-services"
+              >
                 Explore Services
               </Button>
             </Link>
           </motion.div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -179,7 +219,7 @@ export default function Home() {
       <section className="py-20 bg-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-        
+
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -187,8 +227,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Core Pillars</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Built on the foundation of growth, support, and inclusion.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Our Core Pillars
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Built on the foundation of growth, support, and inclusion.
+            </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -202,15 +246,21 @@ export default function Home() {
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
                 <Card className="p-8 h-full border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-white overflow-hidden relative group cursor-pointer">
-                  <div className={`absolute top-0 left-0 w-full h-1.5 ${pillar.color} transition-all duration-300 group-hover:h-2`} />
-                  <motion.div 
+                  <div
+                    className={`absolute top-0 left-0 w-full h-1.5 ${pillar.color} transition-all duration-300 group-hover:h-2`}
+                  />
+                  <motion.div
                     className={`w-16 h-16 ${pillar.color} ${pillar.hoverColor} rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg transition-all duration-300`}
                     whileHover={{ rotate: 5, scale: 1.1 }}
                   >
                     <pillar.icon className="w-8 h-8" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">{pillar.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{pillar.description}</p>
+                  <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {pillar.description}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -220,18 +270,19 @@ export default function Home() {
 
       {/* Maya Angelou Quote Section */}
       <section className="py-20 bg-primary text-white relative overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute inset-0 opacity-10"
-          animate={{ 
+          animate={{
             backgroundPosition: ["0% 0%", "100% 100%"],
           }}
           transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
           style={{
-            backgroundImage: "radial-gradient(circle at center, white 1px, transparent 1px)",
-            backgroundSize: "50px 50px"
+            backgroundImage:
+              "radial-gradient(circle at center, white 1px, transparent 1px)",
+            backgroundSize: "50px 50px",
           }}
         />
-        
+
         <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -248,7 +299,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-2xl md:text-4xl font-medium italic leading-relaxed mb-8"
           >
-            "People will forget what you said, people will forget what you did, but people will never forget how you made them feel."
+            "People will forget what you said, people will forget what you did,
+            but people will never forget how you made them feel."
           </motion.blockquote>
           <motion.cite
             initial={{ opacity: 0 }}
@@ -264,14 +316,14 @@ export default function Home() {
 
       {/* Contact CTA Banner */}
       <section className="py-6 bg-secondary overflow-hidden">
-        <motion.div 
+        <motion.div
           className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
           <Link href="/contact">
-            <motion.div 
+            <motion.div
               className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-white cursor-pointer"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -284,7 +336,9 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-5 h-5" />
-                <span className="font-semibold">info@BeyondHorizonSupportedLiving.org</span>
+                <span className="font-semibold">
+                  info@BeyondHorizonSupportedLiving.org
+                </span>
               </div>
             </motion.div>
           </Link>
@@ -294,7 +348,7 @@ export default function Home() {
       {/* Welcome Section */}
       <section className="py-24 bg-white">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -306,10 +360,12 @@ export default function Home() {
               <span className="text-primary italic">Beyond Horizon</span>{" "}
               <span className="text-secondary italic">Supported Living</span>
             </h1>
-            <p className="text-xl text-muted-foreground">Experience the best in Living Assistance Services!</p>
+            <p className="text-xl text-muted-foreground">
+              Experience the best in Living Assistance Services!
+            </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="grid lg:grid-cols-3 gap-12"
             variants={staggerContainer}
             initial="initial"
@@ -318,33 +374,55 @@ export default function Home() {
           >
             {/* Vision */}
             <motion.div className="space-y-4" variants={fadeInUp}>
-              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">Vision</h2>
+              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">
+                Vision
+              </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Our staff has a simple vision for how we give service to others. It is encompassed by the simple values of <strong className="text-foreground">support</strong>, <strong className="text-foreground">inclusion</strong> and <strong className="text-foreground">growth</strong> for everyone in our community.
+                Our staff has a simple vision for how we give service to others.
+                It is encompassed by the simple values of{" "}
+                <strong className="text-foreground">support</strong>,{" "}
+                <strong className="text-foreground">inclusion</strong> and{" "}
+                <strong className="text-foreground">growth</strong> for everyone
+                in our community.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                We are glad to offer integrated living services that are dedicated to empowering individuals with disabilities to lead fulfilling, independent lives within their chosen communities.
+                We are glad to offer integrated living services that are
+                dedicated to empowering individuals with disabilities to lead
+                fulfilling, independent lives within their chosen communities.
               </p>
             </motion.div>
 
             {/* Mission */}
             <motion.div className="space-y-4" variants={fadeInUp}>
-              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">Mission</h2>
+              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">
+                Mission
+              </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Our mission is to <strong className="text-foreground">deliver expertise and compassion in every interaction</strong>. Through compassionate, person-centered care, we support meaningful relationships, valued activities, and the dignity of living at home.
+                Our mission is to{" "}
+                <strong className="text-foreground">
+                  deliver expertise and compassion in every interaction
+                </strong>
+                . Through compassionate, person-centered care, we support
+                meaningful relationships, valued activities, and the dignity of
+                living at home.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                The experienced caregivers foster environments where clients thrive, maintaining independence and well-being. Guided by the belief that service to others enriches life, we champion inclusion, choice, and lifelong support.
+                The experienced caregivers foster environments where clients
+                thrive, maintaining independence and well-being. Guided by the
+                belief that service to others enriches life, we champion
+                inclusion, choice, and lifelong support.
               </p>
             </motion.div>
 
             {/* Services */}
             <motion.div className="space-y-4" variants={fadeInUp}>
-              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">Services</h2>
+              <h2 className="text-2xl font-bold text-primary border-b-2 border-primary pb-2 inline-block">
+                Services
+              </h2>
               <ul className="space-y-2">
                 {services.map((service, idx) => (
-                  <motion.li 
-                    key={idx} 
+                  <motion.li
+                    key={idx}
                     className="flex items-start gap-2 text-muted-foreground"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -365,7 +443,7 @@ export default function Home() {
       <section className="py-24 bg-slate-50 overflow-hidden">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div 
+            <motion.div
               className="relative group"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -384,32 +462,49 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="bg-white p-8 lg:p-10 rounded-2xl shadow-xl border-l-4 border-primary"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold text-primary mb-6">FOUNDER'S MESSAGE</h2>
+              <h2 className="text-2xl font-bold text-primary mb-6">
+                FOUNDER'S MESSAGE
+              </h2>
               <blockquote className="text-muted-foreground leading-relaxed space-y-4">
                 <p>
-                  "As a Registered Nurse, Nurse Educator, and a parent of individuals supported by DDA, I understand the importance of care that is both clinically sound and deeply compassionate.
+                  "As a Registered Nurse, Nurse Educator, and a parent of
+                  individuals supported by DDA, I understand the importance of
+                  care that is both clinically sound and deeply compassionate.
                 </p>
                 <p>
-                  Beyond Horizon Living Services was created to deliver the kind of care I would want for my own family—care that is safe, respectful, individualized, and empowering.
+                  Beyond Horizon Living Services was created to deliver the kind
+                  of care I would want for my own family—care that is safe,
+                  respectful, individualized, and empowering.
                 </p>
                 <p>
-                  Our mission is to support people not only to live safely, but to thrive with dignity and purpose."
+                  Our mission is to support people not only to live safely, but
+                  to thrive with dignity and purpose."
                 </p>
               </blockquote>
               <div className="mt-6 pt-6 border-t border-slate-200">
-                <p className="font-bold text-foreground">— Mary, RN, MSN, BCBA Candidate</p>
-                <p className="text-sm text-muted-foreground">Founder, Beyond Horizon Living Services</p>
+                <p className="font-bold text-foreground">
+                  — Mary, RN, MSN, BCBA Candidate
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Founder, Beyond Horizon Living Services
+                </p>
               </div>
               <Link href="/about">
-                <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-                  <Button className="mt-6 rounded-full px-6" data-testid="button-read-story">
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Button
+                    className="mt-6 rounded-full px-6"
+                    data-testid="button-read-story"
+                  >
                     Read Our Story! <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </motion.div>
@@ -428,62 +523,75 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Building Community Together</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Building Community Together
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              At Beyond Horizon, we believe in the power of connection and belonging. Our community is built on trust, respect, and shared growth.
+              At Beyond Horizon, we believe in the power of connection and
+              belonging. Our community is built on trust, respect, and shared
+              growth.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[communityImage, supportiveImage, caregiverImage].map((img, idx) => (
-              <motion.div
-                key={idx}
-                className="relative group rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <motion.img
-                    src={img}
-                    alt={`Community ${idx + 1}`}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="font-semibold">Where every individual is valued</p>
+            {[supportiveImage, communityImage, childrenimage].map(
+              (img, idx) => (
+                <motion.div
+                  key={idx}
+                  className="relative group rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <motion.img
+                      src={img}
+                      alt={`Community ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="font-semibold">
+                        Where every individual is valued
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ),
+            )}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-primary/80 text-white relative overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-          animate={{ 
+          animate={{
             x: [0, 50, 0],
             y: [0, -30, 0],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-          animate={{ 
+          animate={{
             x: [0, -50, 0],
             y: [0, 30, 0],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 5,
+          }}
         />
-        
+
         <div className="container max-w-4xl mx-auto px-4 text-center relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -500,7 +608,8 @@ export default function Home() {
             transition={{ delay: 0.1 }}
             className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
           >
-            Contact us today to learn how we can support you or your loved one on the journey to independence.
+            Contact us today to learn how we can support you or your loved one
+            on the journey to independence.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -510,15 +619,30 @@ export default function Home() {
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <Link href="/contact">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-full shadow-2xl" data-testid="button-contact-cta">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 font-bold text-lg px-8 py-6 rounded-full shadow-2xl"
+                  data-testid="button-contact-cta"
+                >
                   Contact Us Today
                 </Button>
               </motion.div>
             </Link>
             <Link href="/services">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-full" data-testid="button-services-cta">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-white text-white hover:bg-white/10 font-bold text-lg px-8 py-6 rounded-full"
+                  data-testid="button-services-cta"
+                >
                   View All Services
                 </Button>
               </motion.div>
