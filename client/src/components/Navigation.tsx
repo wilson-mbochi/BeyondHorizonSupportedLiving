@@ -41,7 +41,7 @@ export function Navigation() {
             <img 
               src={logoImage} 
               alt="Beyond Horizon Supported Living" 
-              className="h-12 md:h-14 w-auto transition-transform group-hover:scale-105"
+              className="h-24 md:h-28 w-auto transition-transform group-hover:scale-105"
             />
           </Link>
 
