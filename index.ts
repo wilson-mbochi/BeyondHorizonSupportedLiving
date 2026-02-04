@@ -4,7 +4,9 @@ import express from "express";
 // entrypoint for platforms like Vercel that look for an `index.ts`
 // which imports `express`. The actual server logic (routes, static
 // file handling, and `httpServer.listen`) lives in `server/index.ts`.
-import "./server/index";
+// NOTE: We use the `.js` extension so that the compiled ESM code
+// resolves correctly in Node on platforms like Vercel.
+import "./server/index.js";
 
 // The imported module starts the HTTP server; we don't need to do
 // anything else here. The `express` import above ensures this file
