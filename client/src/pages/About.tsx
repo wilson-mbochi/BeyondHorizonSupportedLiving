@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import caregiverImage from "@assets/stock_images/black_community_2.jpg";
+import caregiverImage from "@assets/nurse_1770187609658.jpg";
 import communityImage from "@assets/stock_images/black_about_2.jpg";
 
 const values = [
