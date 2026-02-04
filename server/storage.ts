@@ -1,4 +1,4 @@
-import { db } from "./db";
+import { db } from "./db.js";
 import {
   contactMessages,
   jobApplications,
@@ -7,7 +7,7 @@ import {
   type InsertJobApplication,
   type InsertTestimonial,
   type Testimonial
-} from "@shared/schema";
+} from "../shared/schema.js";
 
 export interface IStorage {
   createContactMessage(message: InsertContactMessage): Promise<void>;
