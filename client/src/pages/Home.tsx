@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, TrendingUp, Users, Heart, Phone, Mail, Quote, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, TrendingUp, Users, Heart, Phone, Mail, Quote, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
@@ -88,8 +88,6 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
@@ -115,37 +113,6 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
           </motion.div>
         </AnimatePresence>
-
-        {/* Slider Navigation Arrows */}
-        <button 
-          onClick={prevSlide}
-          className="absolute left-4 md:left-8 z-20 p-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 transition-all"
-          data-testid="button-hero-prev"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button 
-          onClick={nextSlide}
-          className="absolute right-4 md:right-8 z-20 p-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 transition-all"
-          data-testid="button-hero-next"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
-        {/* Slide Indicators */}
-        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-          {heroSlides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full transition-all ${idx === currentSlide ? 'bg-white w-8' : 'bg-white/50 hover:bg-white/70'}`}
-              data-testid={`button-hero-indicator-${idx}`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
-        </div>
 
         <motion.div 
           className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto pt-24 md:pt-0"
