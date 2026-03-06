@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import type { Server } from "http";
+import { pool } from "./db.js";
 import { storage } from "./storage.js";
 import { api } from "../shared/routes.js";
 import { z } from "zod";
@@ -8,7 +9,20 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  
+  // Health check so you can see DB status: GET /api/health
+  app.get("/api/health", async (_req, res) => {
+    try {
+      await pool.query("SELECT 1");
+      res.json({ ok: true, db: "connected" });
+    } catch (err: any) {
+      res.status(503).json({
+        ok: false,
+        db: "error",
+        message: err?.message || String(err),
+      });
+    }
+  });
+
   app.post(api.contact.submit.path, async (req, res) => {
     try {
       const input = api.contact.submit.input.parse(req.body);
@@ -40,31 +54,6 @@ export async function registerRoutes(
       throw err;
     }
   });
-
-  app.get(api.testimonials.list.path, async (req, res) => {
-    const list = await storage.getTestimonials();
-    res.json(list);
-  });
-
-  // Seed data if needed
-  const existingTestimonials = await storage.getTestimonials();
-  if (existingTestimonials.length === 0) {
-    await storage.createTestimonial({
-      name: "Sarah Jenkins",
-      role: "Family Member",
-      content: "Beyond Horizon has given my brother a new lease on life. The staff are incredibly supportive and truly care about his independence."
-    });
-    await storage.createTestimonial({
-      name: "Michael Chen",
-      role: "Resident",
-      content: "I feel heard and respected here. It's not just about care, it's about living my life the way I want to."
-    });
-    await storage.createTestimonial({
-      name: "Dr. Emily Thompson",
-      role: "Community Partner",
-      content: "A model for supported living services. Their commitment to community integration is outstanding."
-    });
-  }
 
   return httpServer;
 }

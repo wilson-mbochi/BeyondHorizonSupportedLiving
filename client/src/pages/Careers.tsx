@@ -50,10 +50,16 @@ export default function Careers() {
             <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto mb-6">
               <Briefcase className="w-8 h-8" />
             </div>
-            <h2 className="text-3xl font-display font-bold text-foreground mb-4">Current Opportunities</h2>
-            <p className="text-muted-foreground">
-              We are always looking for compassionate, dedicated individuals to join our support team.
+            <h2 className="text-3xl font-display font-bold text-foreground mb-4">Employment Opportunities</h2>
+            <p className="text-muted-foreground mb-6">
+              Fill out an application for a job! We are always looking for compassionate, dedicated individuals to join our support team.
             </p>
+            <div className="text-left max-w-2xl mx-auto mb-8 p-6 rounded-2xl bg-slate-50 border border-slate-100">
+              <h3 className="font-semibold text-foreground mb-2">Requirements</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                To qualify for our roles, candidates must have a high school diploma, a valid driver's license, and at least six months' experience supporting individuals with developmental disabilities. We seek motivated, self-directed professionals who demonstrate initiative and an eagerness to learn. Additional experience or study in mental health, chemical dependency, or ASL is highly valued.
+              </p>
+            </div>
           </div>
 
           <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-slate-100">

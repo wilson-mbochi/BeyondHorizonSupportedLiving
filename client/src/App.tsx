@@ -10,9 +10,9 @@ import { useLocation } from "wouter";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
-import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
 import Careers from "@/pages/Careers";
+import Resources from "@/pages/Resources";
 import NotFound from "@/pages/not-found";
 
 // Scroll to top on route change
@@ -32,9 +32,9 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/services" component={Services} />
-        <Route path="/testimonials" component={Testimonials} />
         <Route path="/contact" component={Contact} />
         <Route path="/careers" component={Careers} />
+        <Route path="/resources" component={Resources} />
         <Route component={NotFound} />
       </Switch>
     </>

@@ -10,6 +10,7 @@ import {
   TrendingUp,
   Users,
   Heart,
+  HeartHandshake,
   Phone,
   Mail,
   Quote,
@@ -355,13 +356,27 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Welcome to{" "}
-              <span className="text-primary italic">Beyond Horizon</span>{" "}
-              <span className="text-secondary italic">Supported Living</span>
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Experience the best in Living Assistance Services!
+            <div className="inline-flex flex-col items-center gap-5">
+              <span className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white shadow-sm border border-primary/20">
+                <span className="inline-flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <HeartHandshake className="w-4 h-4 md:w-5 md:h-5" />
+                </span>
+                <span className="text-[0.65rem] md:text-xs font-semibold tracking-[0.35em] uppercase text-primary/70">
+                  Welcome to
+                </span>
+              </span>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight text-center">
+                <span className="bg-[linear-gradient(to_right,#0ea5e9_0%,#f472b6_33%,#fcd34d_66%,#0ea5e9_100%)] bg-clip-text text-transparent drop-shadow-sm">
+                  Beyond Horizon Supported Living
+                </span>
+              </h1>
+            </div>
+
+            <p className="mt-4 text-xl font-semibold text-neutral-900 flex justify-center">
+              <span className="inline-block px-6 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm backdrop-blur-sm">
+                Care beyond boundaries, where support meets dignity.
+              </span>
             </p>
           </motion.div>
 

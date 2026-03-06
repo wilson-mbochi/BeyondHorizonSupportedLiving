@@ -60,43 +60,48 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  await registerRoutes(httpServer, app);
+  try {
+    await registerRoutes(httpServer, app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+    app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+      const status = err.status || err.statusCode || 500;
+      const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    throw err;
-  });
+      res.status(status).json({ message });
+      throw err;
+    });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (process.env.NODE_ENV === "production") {
-    serveStatic(app);
-  } else {
-    const { setupVite } = await import("./vite.js");
-    await setupVite(httpServer, app);
+    // importantly only setup vite in development and after
+    // setting up all the other routes so the catch-all route
+    // doesn't interfere with the other routes
+    if (process.env.NODE_ENV === "production") {
+      serveStatic(app);
+    } else {
+      const { setupVite } = await import("./vite.js");
+      await setupVite(httpServer, app);
+    }
+
+    // ALWAYS serve the app on the port specified in the environment variable PORT.
+    // Default to 5000 if not specified. This serves both the API and the client.
+    const port = parseInt(process.env.PORT || "5000", 10);
+
+    // On some environments (like Replit/Linux) we can safely use `reusePort`,
+    // but on Windows this option is not supported and will throw ENOTSUP.
+    const listenOptions: import("net").ListenOptions = {
+      port,
+      host: "0.0.0.0",
+    };
+
+    if (process.platform !== "win32") {
+      // Only enable port reuse on platforms that support it.
+      (listenOptions as any).reusePort = true;
+    }
+
+    httpServer.listen(listenOptions, () => {
+      log(`serving on port ${port}`);
+    });
+  } catch (err) {
+    console.error("[server] Startup failed:", err);
+    process.exit(1);
   }
-
-  // ALWAYS serve the app on the port specified in the environment variable PORT.
-  // Default to 5000 if not specified. This serves both the API and the client.
-  const port = parseInt(process.env.PORT || "5000", 10);
-
-  // On some environments (like Replit/Linux) we can safely use `reusePort`,
-  // but on Windows this option is not supported and will throw ENOTSUP.
-  const listenOptions: import("net").ListenOptions = {
-    port,
-    host: "0.0.0.0",
-  };
-
-  if (process.platform !== "win32") {
-    // Only enable port reuse on platforms that support it.
-    (listenOptions as any).reusePort = true;
-  }
-
-  httpServer.listen(listenOptions, () => {
-    log(`serving on port ${port}`);
-  });
 })();

@@ -21,13 +21,6 @@ export const jobApplications = pgTable("job_applications", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const testimonials = pgTable("testimonials", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  role: text("role").notNull(),
-  content: text("content").notNull(),
-});
-
 export const insertContactSchema = createInsertSchema(contactMessages).omit({ 
   id: true, 
   createdAt: true 
@@ -38,15 +31,8 @@ export const insertJobApplicationSchema = createInsertSchema(jobApplications).om
   createdAt: true 
 });
 
-export const insertTestimonialSchema = createInsertSchema(testimonials).omit({ 
-  id: true 
-});
-
 export type ContactMessage = typeof contactMessages.$inferSelect;
 export type InsertContactMessage = z.infer<typeof insertContactSchema>;
 
 export type JobApplication = typeof jobApplications.$inferSelect;
 export type InsertJobApplication = z.infer<typeof insertJobApplicationSchema>;
-
-export type Testimonial = typeof testimonials.$inferSelect;
-export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;

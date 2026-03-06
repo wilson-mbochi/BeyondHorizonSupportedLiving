@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertContactSchema, insertJobApplicationSchema, testimonials } from './schema.js';
+import { insertContactSchema, insertJobApplicationSchema } from './schema.js';
 
 export const errorSchemas = {
   validation: z.object({
@@ -31,15 +31,6 @@ export const api = {
       responses: {
         201: z.object({ success: z.boolean(), message: z.string() }),
         400: errorSchemas.validation,
-      },
-    },
-  },
-  testimonials: {
-    list: {
-      method: 'GET' as const,
-      path: '/api/testimonials',
-      responses: {
-        200: z.array(z.custom<typeof testimonials.$inferSelect>()),
       },
     },
   },
